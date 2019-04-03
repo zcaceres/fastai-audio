@@ -166,6 +166,7 @@ def tfm_spectro(ad: AudioData, n_mels=128, to_db_scale=False, top_db=-80, **kwar
     mel = mel.permute(0, 2, 1)  # swap dimension...
     if to_db_scale:
         mel = SPEC2DB(stype='magnitude', top_db=top_db)(mel)
+    mel = mel.expand(3, -1, -1)
     return mel
 
 
